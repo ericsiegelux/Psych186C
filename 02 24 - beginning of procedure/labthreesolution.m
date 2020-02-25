@@ -9,7 +9,6 @@
 
 % Task #3: Add variables to record whatever you need to calculate (i) hits,
 % (ii) correct rejections, (iii) false alarms, and (iv) misses
-
 % Task #4: Add some noise to each trial. In the folder on CCLE you will see
 % the function MakeUniformPlayground. It allows the users to easily create
 % a uniform Field of Dots (FoD) based on the desired width, height, and density
@@ -34,7 +33,7 @@
 Screen('Preference', 'SkipSyncTests', 1);
 clear; close all;
 KbName('UnifyKeyNames');
-debugMode = 0;
+debugMode = 1;
 
 try
     %% Participant Information
@@ -154,17 +153,54 @@ try
     dotCoordinates = MakeUniformPlayground(dotmatrixwidth, dotmatrixheight, dotdensity);
     
     %% Experiment Instrutions
+    
+    % Adding Phone Photo here to test import and coordinates
+    image = imread('iPhone X.png'); % Define image and store in array
+    image_texture = Screen('MakeTexture', window, image); % Convert image to texture which is used in Screen
+    
+    % test image coordinates
+    imScale = 1.5;
+    imWidth = 433/imScale; % original width = 433
+    imHeight = 864/imScale; % original heigth = 864
+    
+    % Image Coordinates to set image center of screen
+    im_TopLeft_X = 0+cx-(imWidth/2);
+    im_TopLeft_Y = 0+cy-(imHeight/2);
+    im_BottomRight_X = 0+cx+(imWidth/2);
+    im_BottomRight_Y = 0+cy+(imHeight/2);
+    
+    % Boundaries for dots within phone
+    dot_Left = im_TopLeft_X+30;
+    dot_Top = im_TopLeft_Y+40;
+    dot_Right = im_BottomRight_X-40;
+    dot_Bottom = im_BottomRight_Y-40;
+    
+    % Instructions
     Screen('DrawText',window,'In this experiment, you may or may not be presented with a Square somewhere within the display of Circles.',150,200, textColor);
     Screen('DrawText',window,'If there was a Square, press the "A" button.',150,225, textColor);
     Screen('DrawText',window,'If there was no Square, press the "L" button',150,250, textColor);
+    Screen('DrawText',window,'You will be given # seconds to complete the task',150,300, textColor);
     Screen('DrawText',window,'Press any key to begin the experiment',150,500, textColor);
+    
+    % [write code for]: Example of Noise and Signal 
+    
+    Screen('DrawTexture',window,image_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    
+    Screen('DrawText', window, 'o', cx, cy, textColor); %center dot
+    Screen('DrawText', window, 'o', dot_Left, dot_Top, textColor); % dot top left coordinate of phone screen
+    Screen('DrawText', window, 'o', dot_Right, dot_Top, textColor); % dot top right coordinate of phone screen
+    Screen('DrawText', window, 'o', dot_Left, dot_Bottom, textColor); % dot bottom left coordinate of phone screen
+    Screen('DrawText', window, 'o', dot_Right, dot_Bottom, textColor); % dot bottom right coordinate of phone screen
+
     Screen('Flip',window);
+    
+    
     KbWait;
     KbReleaseWait;
     WaitSecs(1);
     
     %% Set up Trial Structure
-    nTrials = 5;
+    nTrials = 100;
     
     % Set up some recording material:
     res.participantResponse = zeros(1,nTrials); % Yes = 1; No = 2
@@ -185,7 +221,7 @@ try
     trialMatrix(randperm(nTrials,30)) = 1; % randomly make 30 of those 0s, 1
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:nTrials
+    for t = 1:5
         
         if trialMatrix(t) == 1 % when noise
             dotColor = black;
