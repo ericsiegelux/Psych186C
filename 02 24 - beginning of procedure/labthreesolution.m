@@ -160,8 +160,8 @@ try
     
     % test image coordinates
     imScale = 1.5;
-    imWidth = 433/imScale; % original width = 433
-    imHeight = 864/imScale; % original heigth = 864
+    imWidth = 326; % original width = 433
+    imHeight = 648; % original heigth = 864
     
     % Image Coordinates to set image center of screen
     im_TopLeft_X = 0+cx-(imWidth/2);
@@ -194,6 +194,7 @@ try
 
     Screen('Flip',window);
     
+    % tic, timerVal = tic for stop watch
     
     KbWait;
     KbReleaseWait;
@@ -279,7 +280,7 @@ try
             end
         end
         
-        %H=1 / M=2 / FA = 3 / CR = 4
+        % H=1 / M=2 / FA = 3 / CR = 4
         if trialMatrix(t) == 0 && touchtone == 1 %Signal + Yes [H]
             typeResponse = 1;
         elseif trialMatrix(t) == 0 && touchtone == 2 %Signal + No [M]
