@@ -152,50 +152,157 @@ try
     % be implemented by Screen DrawDots Function below
     dotCoordinates = MakeUniformPlayground(dotmatrixwidth, dotmatrixheight, dotdensity);
     
-    %% Experiment Instrutions
-    
-    % Adding Phone Photo here to test import and coordinates
+    %% Images
+    % Read Images and Convert to Texture
     image = imread('iPhone X.png'); % Define image and store in array
-    image_texture = Screen('MakeTexture', window, image); % Convert image to texture which is used in Screen
+    practiceP1 = imread('Practice.P1.png');
+    practiceP2 = imread('Practice.P2.png');
+    practiceL1 = imread('Practice.L1.png');
+    practiceL2 = imread('Practice.L2.png');
     
-    % test image coordinates
+    practiceP1_texture = Screen('MakeTexture', window, practiceP1); % Convert image to texture which is used in Screen
+    practiceP2_texture = Screen('MakeTexture', window, practiceP2); % Convert image to texture which is used in Screen
+    practiceL1_texture = Screen('MakeTexture', window, practiceL1); % Convert image to texture which is used in Screen
+    practiceL2_texture = Screen('MakeTexture', window, practiceL2); % Convert image to texture which is used in Screen
+
+    % Image (Portrait)
     imScale = 1.5;
     imWidth = 326; % original width = 433
     imHeight = 648; % original heigth = 864
     
-    % Image Coordinates to set image center of screen
+    % Image (Portrait) Coordinates - to set image center of screen
     im_TopLeft_X = 0+cx-(imWidth/2);
     im_TopLeft_Y = 0+cy-(imHeight/2);
     im_BottomRight_X = 0+cx+(imWidth/2);
     im_BottomRight_Y = 0+cy+(imHeight/2);
+    
+    % Image (Landscape)
+    imScale = 1.5;
+    L.imWidth = 648; 
+    L.imHeight = 326; 
+    
+    % Image (Landscape) Coordinates - to set image center of screen
+    L.im_TopLeft_X = 0+cx-(L.imWidth/2);
+    L.im_TopLeft_Y = 0+cy-(L.imHeight/2);
+    L.im_BottomRight_X = 0+cx+(L.imWidth/2);
+    L.im_BottomRight_Y = 0+cy+(L.imHeight/2);
     
     % Boundaries for dots within phone
     dot_Left = im_TopLeft_X+30;
     dot_Top = im_TopLeft_Y+40;
     dot_Right = im_BottomRight_X-40;
     dot_Bottom = im_BottomRight_Y-40;
+    %% Instructions
     
     % Instructions
-    Screen('DrawText',window,'In this experiment, you may or may not be presented with a Square somewhere within the display of Circles.',150,200, textColor);
-    Screen('DrawText',window,'If there was a Square, press the "A" button.',150,225, textColor);
-    Screen('DrawText',window,'If there was no Square, press the "L" button',150,250, textColor);
-    Screen('DrawText',window,'You will be given # seconds to complete the task',150,300, textColor);
-    Screen('DrawText',window,'Press any key to begin the experiment',150,500, textColor);
+    Screen('DrawText',window,'In this experiment, you may or may not be presented with "T" somewhere within the display of "L".',150,200, textColor);
+    Screen('DrawText',window,'If there was a "T", press the "A" button.',150,225, textColor);
+    Screen('DrawText',window,'If there was no "T", press the "L" button',150,250, textColor);
+    %Screen('DrawText',window,'You will be given 6 seconds to complete the task',150,300, textColor);
+    Screen('DrawText',window,'Press any key to practice.',150,500, textColor);
     
-    % [write code for]: Example of Noise and Signal 
-    
-    Screen('DrawTexture',window,image_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    
-    Screen('DrawText', window, 'o', cx, cy, textColor); %center dot
-    Screen('DrawText', window, 'o', dot_Left, dot_Top, textColor); % dot top left coordinate of phone screen
-    Screen('DrawText', window, 'o', dot_Right, dot_Top, textColor); % dot top right coordinate of phone screen
-    Screen('DrawText', window, 'o', dot_Left, dot_Bottom, textColor); % dot bottom left coordinate of phone screen
-    Screen('DrawText', window, 'o', dot_Right, dot_Bottom, textColor); % dot bottom right coordinate of phone screen
-
     Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
     
-    % tic, timerVal = tic for stop watch
+    %% Practice
     
+    %Fixation Cross for Practice 1
+    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+    Screen('Flip',window);
+    WaitSecs(fixationCrossDuration);
+    
+    %Practice 1
+    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Results
+    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
+    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Fixation Cross for Practice 2
+    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+    Screen('Flip',window);
+    WaitSecs(fixationCrossDuration);
+    
+    %Practice 2
+    Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Results
+    Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
+    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Fixation Cross for Practice 3
+    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+    Screen('Flip',window);
+    WaitSecs(fixationCrossDuration);
+    
+    %Practice 3
+    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Results
+    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
+    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Fixation Cross for Practice 4
+    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+    Screen('Flip',window);
+    WaitSecs(fixationCrossDuration);
+    
+    %Practice 4
+    Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    %Results
+    Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
+    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    WaitSecs(1);
+    
+    % End Practice
+    Screen('DrawText',window,'You are finished with the practice trials.  Press any key to continue to the experiment.',500,cy, textColor);
+    Screen('Flip',window);
     KbWait;
     KbReleaseWait;
     WaitSecs(1);
@@ -222,7 +329,7 @@ try
     trialMatrix(randperm(nTrials,30)) = 1; % randomly make 30 of those 0s, 1
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:5
+    for t = 1:1
         
         if trialMatrix(t) == 1 % when noise
             dotColor = black;
@@ -258,7 +365,7 @@ try
         % Ask the participant what you want to
         Screen('FillRect', window, black);
         Screen('TextSize',window, 24);
-        Screen('DrawText',window,'Was a Square present? YES(A) or NO(L)?',cx-200,cy, textColor);
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
         Screen('Flip',window);
         
         % Let them respond to your question
