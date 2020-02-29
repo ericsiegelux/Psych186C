@@ -153,7 +153,7 @@ try
     dotCoordinates = MakeUniformPlayground(dotmatrixwidth, dotmatrixheight, dotdensity);
     
     %% Images
-    % Read Images and Convert to Texture
+    % Practice - Read Images and Convert to Texture
     image = imread('iPhone X.png'); % Define image and store in array
     practiceP1 = imread('Practice.P1.png');
     practiceP2 = imread('Practice.P2.png');
@@ -164,6 +164,33 @@ try
     practiceP2_texture = Screen('MakeTexture', window, practiceP2); % Convert image to texture which is used in Screen
     practiceL1_texture = Screen('MakeTexture', window, practiceL1); % Convert image to texture which is used in Screen
     practiceL2_texture = Screen('MakeTexture', window, practiceL2); % Convert image to texture which is used in Screen
+    
+    % Portrait - Read Images and Convert to Texture
+    p_Noise = imread('P.N.png');
+    p_Q1_1 = imread('P.Q1.1.png');
+    p_Q1_2 = imread('P.Q1.2.png');
+    p_Q1_3 = imread('P.Q1.3.png');
+    p_Q1_4 = imread('P.Q1.4.png');
+    
+    p_Q2_1 = imread('P.Q2.1.png');
+    p_Q2_2 = imread('P.Q2.2.png');
+    p_Q2_3 = imread('P.Q2.3.png');
+    p_Q2_4 = imread('P.Q2.4.png');
+    
+    p_Q3_1 = imread('P.Q3.1.png');
+    p_Q3_2 = imread('P.Q3.2.png');
+    p_Q3_3 = imread('P.Q3.3.png');
+    p_Q3_4 = imread('P.Q3.4.png');
+    
+    p_Q4_1 = imread('P.Q4.1.png');
+    p_Q4_2 = imread('P.Q4.2.png');
+    p_Q4_3 = imread('P.Q4.3.png');
+    p_Q4_4 = imread('P.Q4.4.png');
+
+    p_Q1_1_texture = Screen('MakeTexture', window, p_Q1_1); % Convert image to texture which is used in Screen
+    % For Eric - i didn't finish converting images to textures for the rest
+    % of the portaits
+    
 
     % Image (Portrait)
     imScale = 1.5;
