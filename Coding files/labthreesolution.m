@@ -116,42 +116,7 @@ try
     % Set the duration for how long the fixation cross appears each trial
     fixationCrossDuration = .5;
     
-    %% Flashing Dot Parameters
-    % Set the radius of the circle
-    circleStimulusRadius = 2;
-    
-    % Define minimum X coordinate and maximum X coordinate
-    lowerx = cx-150;
-    upperx = cx+150;
-    
-    % Define minimum Y coordinate and maximum Y coordinate
-    lowery = cy-150;
-    uppery = cy+150;
-    
-    % Find intermediate values
-    potentialHorizontal = (lowerx:1:upperx);
-    potentialVertical = (lowery:1:uppery);
-    
-    % Presentation Time for circle
-    circleStimulusDuration = .3;
-    
-    %% Field of Dots (FoD) Parameters:
-    % Set the radius of each dot in the array
-    dotsize = 2;
-    
-    % Set how many dots you would like to appear in the array
-    dotdensity = 30^2;
-    
-    % Define FoD width
-    dotmatrixwidth = 300;
-    
-    % Define FoD height
-    dotmatrixheight = 300;
-    
-    % Use the MakeUniformPlayground to make the X,Y coordinates that would
-    % be implemented by Screen DrawDots Function below
-    dotCoordinates = MakeUniformPlayground(dotmatrixwidth, dotmatrixheight, dotdensity);
-    
+  
     %% Images
     % Practice - Read Images and Convert to Texture
     image = imread('iPhone X.png'); % Define image and store in array
@@ -320,6 +285,7 @@ try
     dot_Top = im_TopLeft_Y+40;
     dot_Right = im_BottomRight_X-40;
     dot_Bottom = im_BottomRight_Y-40;
+    
     %% Instructions
     
     % Instructions
@@ -453,19 +419,92 @@ try
     typeResponse = 0; %  %hit=1 / miss=2 / fa = 3 / CR = 4
     
     % Make some of these trials noise
-    trialMatrix = zeros(nTrials,1); % nTrials x 1 column vector 0f 0s
-    trialMatrix(randperm(nTrials,30)) = 1; % randomly make 30 of those 0s, 1
+    noise_index = repelem(0,1,32);
+    signal_index = repelem (1,1,32);
+    trialMatrix = [noise_index signal_index];
+    
+    pic = 0;
+    pic_index = [1:64];
+    
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:1
+    for t = 1:5
         
         pic = 0;
-        pic_index = [1:64];
-        rand_index = randi(64);
+        portrait = 0;
+        landscape = 0;
+        
+         % Draw the fixation cross in white, 2 = high smoothing
+        Screen('FillRect',window,black);
+        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        Screen('Flip',window);
+        WaitSecs(fixationCrossDuration);
+        
+        rand_index = randi(length(pic_index));
         switch rand_index
-          case 1:16
+          case 1
             pic = imread('P.N.png');
-          case 17:32
+          case 2
+            pic = imread('P.N.png');
+          case 3
+            pic = imread('P.N.png');
+          case 4
+            pic = imread('P.N.png');
+          case 5
+            pic = imread('P.N.png');
+          case 6
+            pic = imread('P.N.png');
+          case 7
+            pic = imread('P.N.png');
+          case 8
+            pic = imread('P.N.png');
+          case 9
+            pic = imread('P.N.png');
+          case 10
+            pic = imread('P.N.png');
+          case 11
+            pic = imread('P.N.png');
+          case 12
+            pic = imread('P.N.png');
+          case 13
+            pic = imread('P.N.png');
+          case 14
+            pic = imread('P.N.png');
+          case 15
+            pic = imread('P.N.png');
+          case 16
+            pic = imread('P.N.png');
+          case 17
+            pic = imread('L.N.png');
+          case 18
+            pic = imread('L.N.png');
+          case 19
+            pic = imread('L.N.png');
+          case 20
+            pic = imread('L.N.png');
+          case 21
+            pic = imread('L.N.png');
+          case 22
+            pic = imread('L.N.png');
+          case 23
+            pic = imread('L.N.png');
+          case 24
+            pic = imread('L.N.png');
+          case 25
+            pic = imread('L.N.png');
+          case 26
+            pic = imread('L.N.png');
+          case 27
+            pic = imread('L.N.png');
+          case 28
+            pic = imread('L.N.png');
+          case 29
+            pic = imread('L.N.png');
+          case 30
+            pic = imread('L.N.png');
+          case 31
+            pic = imread('L.N.png');
+          case 32
             pic = imread('L.N.png');
           case 33
             pic = imread('P.Q1.1.png');
@@ -510,15 +549,15 @@ try
           case 53
             pic = imread('L.Q2.1.png');
           case 54
-            pic = imread('P.Q2.2.png');
+            pic = imread('L.Q2.2.png');
           case 55
-            pic = imread('P.Q2.3.png');
+            pic = imread('L.Q2.3.png');
           case 56
-            pic = imread('P.Q2.4.png');
+            pic = imread('L.Q2.4.png');
           case 57
-            pic = imread('P.Q3.1.png');
+            pic = imread('L.Q3.1.png');
           case 58
-            pic = imread('P.Q3.2.png');
+            pic = imread('L.Q3.2.png');
           case 59
             pic = imread('L.Q3.3.png');
           case 60
@@ -531,45 +570,83 @@ try
             pic = imread('L.Q4.3.png');
           case 64
             pic = imread('L.Q4.4.png');
-      end
-
-        pic_index(rand_index) = [];
-
-        p_Q1_1_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
-
-        
-        
-        
-        if trialMatrix(t) == 1 % when noise
-            dotColor = black;
-        elseif trialMatrix(t) == 0 % when signal
-            dotColor = red;
         end
         
-        % Draw the fixation cross in white, 2 = high smoothing
-        Screen('FillRect',window,black);
-        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        if rand_index >= 1 && rand_index <= 16
+            portrait = 1;
+            % Image (Portrait)
+            imScale = 1.5;
+            imWidth = 326; % original width = 433
+            imHeight = 648; % original heigth = 864
+            % Image (Portrait) Coordinates - to set image center of screen
+            im_TopLeft_X = 0+cx-(imWidth/2);
+            im_TopLeft_Y = 0+cy-(imHeight/2);
+            im_BottomRight_X = 0+cx+(imWidth/2);
+            im_BottomRight_Y = 0+cy+(imHeight/2);
+
+        elseif rand_index >= 17 && rand_index <= 32
+            landscape = 1;
+            % Image (Landscape)
+            imScale = 1.5;
+            imWidth = 648; 
+            imHeight = 326; 
+
+            % Image (Landscape) Coordinates - to set image center of screen
+            im_TopLeft_X = 0+cx-(L.imWidth/2);
+            im_TopLeft_Y = 0+cy-(L.imHeight/2);
+            im_BottomRight_X = 0+cx+(L.imWidth/2);
+            im_BottomRight_Y = 0+cy+(L.imHeight/2);
+            
+            
+        elseif rand_index >= 33 && rand_index <= 48
+            portrait = 1;
+            % Image (Portrait)
+            imScale = 1.5;
+            imWidth = 326; % original width = 433
+            imHeight = 648; % original heigth = 864
+            % Image (Portrait) Coordinates - to set image center of screen
+            im_TopLeft_X = 0+cx-(imWidth/2);
+            im_TopLeft_Y = 0+cy-(imHeight/2);
+            im_BottomRight_X = 0+cx+(imWidth/2);
+            im_BottomRight_Y = 0+cy+(imHeight/2);
+            
+            
+        else
+             landscape = 1;
+            % Image (Landscape)
+            imScale = 1.5;
+            imWidth = 648; 
+            imHeight = 326; 
+
+            % Image (Landscape) Coordinates - to set image center of screen
+            im_TopLeft_X = 0+cx-(L.imWidth/2);
+            im_TopLeft_Y = 0+cy-(L.imHeight/2);
+            im_BottomRight_X = 0+cx+(L.imWidth/2);
+            im_BottomRight_Y = 0+cy+(L.imHeight/2);
+            
+        end
+        pic_index(rand_index) = [];
+
+        pic_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
+
+     
+
+        % Boundaries for dots within phone
+        dot_Left = im_TopLeft_X+30;
+        dot_Top = im_TopLeft_Y+40;
+        dot_Right = im_BottomRight_X-40;
+        dot_Bottom = im_BottomRight_Y-40;
+        
+        
+        
+        Screen('DrawTexture',window,pic_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
         Screen('Flip',window);
-        WaitSecs(fixationCrossDuration);
+        KbWait;
+        KbReleaseWait;
+        WaitSecs(1);
         
-        % Moved this to the for loop or else you will keep adding to these
-        % coordinates ;)
-        circleStimulus = [circleStimulusRadius*cosd(1:360); circleStimulusRadius*sind(1:360)]';
         
-        % Move the circle randomly within the screen
-        circlemoveX = randsample(potentialHorizontal,1);
-        circlemoveY = randsample(potentialVertical,1);
-        
-        %Move the circle to the screen whatever that random X and Y may be
-        circleStimulus(:,1) = circleStimulus(:,1) + circlemoveX;
-        circleStimulus(:,2) = circleStimulus(:,2) + circlemoveY;
-        
-        % Draw the circle dot stimulus
-        Screen('FillRect',window,black);
-        Screen('FillPoly', window, dotColor, circleStimulus);
-        Screen('DrawDots', window, dotCoordinates, dotsize, white, [cx-150 cy-150], 1);
-        Screen('Flip',window);
-        WaitSecs(circleStimulusDuration);
         
         % Ask the participant what you want to
         Screen('FillRect', window, black);
@@ -597,20 +674,20 @@ try
         end
         
         % H=1 / M=2 / FA = 3 / CR = 4
-        if trialMatrix(t) == 0 && touchtone == 1 %Signal + Yes [H]
+        if trialMatrix(rand_index) == 1 && touchtone == 1 %Signal + Yes [H]
             typeResponse = 1;
-        elseif trialMatrix(t) == 0 && touchtone == 2 %Signal + No [M]
+        elseif trialMatrix(rand_index) == 1 && touchtone == 2 %Signal + No [M]
             typeResponse = 2;
-        elseif trialMatrix(t) == 1 && touchtone == 1 %Noise + Yes [FA]
+        elseif trialMatrix(rand_index) == 0 && touchtone == 1 %Noise + Yes [FA]
             typeResponse = 3;
-        elseif trialMatrix(t) == 1 && touchtone == 2 %wNoise + No [CR]
+        elseif trialMatrix(rand_index) == 0 && touchtone == 2 %wNoise + No [CR]
             typeResponse = 4;
         end
         
         res.participantResponse(t) = touchtone; % value of key pressed in trial
         res.SDTresponse(t) = typeResponse;
-        res.dotpositionX(t) = circlemoveX;
-        res.dotpositionY(t) = circlemoveY;
+        %res.dotpositionX(t) = circlemoveX;
+        %res.dotpositionY(t) = circlemoveY;
         
         if debugMode == 0
             save(savename,'res');
