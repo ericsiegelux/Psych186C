@@ -167,6 +167,7 @@ try
     
     % Portrait - Read Images and Convert to Texture
     p_Noise = imread('P.N.png');
+
     p_Q1_1 = imread('P.Q1.1.png');
     p_Q1_2 = imread('P.Q1.2.png');
     p_Q1_3 = imread('P.Q1.3.png');
@@ -187,7 +188,107 @@ try
     p_Q4_3 = imread('P.Q4.3.png');
     p_Q4_4 = imread('P.Q4.4.png');
 
-    p_Q1_1_texture = Screen('MakeTexture', window, p_Q1_1); % Convert image to texture which is used in Screen
+
+    l_Noise = imread('L.N.png');
+
+    l_Q1_1 = imread('L.Q1.1.png');
+    l_Q1_2 = imread('L.Q1.2.png');
+    l_Q1_3 = imread('L.Q1.3.png');
+    l_Q1_4 = imread('L.Q1.4.png');
+
+    l_Q2_1 = imread('L.Q2.1.png');
+    l_Q2_2 = imread('L.Q2.2.png');
+    l_Q2_3 = imread('L.Q2.3.png');
+    l_Q2_4 = imread('L.Q2.4.png');
+
+    l_Q3_1 = imread('L.Q3.1.png');
+    l_Q3_2 = imread('L.Q3.2.png');
+    l_Q3_3 = imread('L.Q3.3.png');
+    l_Q3_4 = imread('L.Q3.4.png');
+
+    l_Q4_1 = imread('L.Q4.1.png');
+    l_Q4_2 = imread('L.Q4.2.png');
+    l_Q4_3 = imread('L.Q4.3.png');
+    l_Q4_4 = imread('L.Q4.4.png');
+    
+    pic = 0;
+    pic_index = [1:64];
+    rand_index = randi(64);
+    
+    switch rand_index
+      case 1:16
+        pic = imread('P.N.png');
+      case 17:32
+        pic = imread('L.N.png');
+      case 33
+        pic = imread('P.Q1.1.png');
+      case 34
+        pic = imread('P.Q1.2.png');
+      case 35
+        pic = imread('P.Q1.3.png');
+      case 36
+        pic = imread('P.Q1.4.png');
+      case 37
+        pic = imread('P.Q2.1.png');
+      case 38
+        pic = imread('P.Q2.2.png');
+      case 39
+        pic = imread('P.Q2.3.png');
+      case 40
+        pic = imread('P.Q2.4.png');
+      case 41
+        pic = imread('P.Q3.1.png');
+      case 42
+        pic = imread('P.Q3.2.png');
+      case 43
+        pic = imread('P.Q3.3.png');
+      case 44
+        pic = imread('P.Q3.4.png');
+      case 45
+        pic = imread('P.Q4.1.png');
+      case 46
+        pic = imread('P.Q4.2.png');
+      case 47
+        pic = imread('P.Q4.3.png');
+      case 48
+        pic = imread('P.Q4.4.png');
+      case 49
+        pic = imread('L.Q1.1.png');
+      case 50
+        pic = imread('L.Q1.2.png');
+      case 51
+        pic = imread('L.Q1.3.png');
+      case 52
+        pic = imread('L.Q1.4.png');
+      case 53
+        pic = imread('L.Q2.1.png');
+      case 54
+        pic = imread('P.Q2.2.png');
+      case 55
+        pic = imread('P.Q2.3.png');
+      case 56
+        pic = imread('P.Q2.4.png');
+      case 57
+        pic = imread('P.Q3.1.png');
+      case 58
+        pic = imread('P.Q3.2.png');
+      case 59
+        pic = imread('L.Q3.3.png');
+      case 60
+        pic = imread('L.Q3.4.png');
+      case 61
+        pic = imread('L.Q4.1.png');
+      case 62
+        pic = imread('L.Q4.2.png');
+      case 63
+        pic = imread('L.Q4.3.png');
+      case 64
+        pic = imread('L.Q4.4.png');
+    end
+
+    pic_index(rand_index) = [];
+    
+    p_Q1_1_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
     % For Eric - i didn't finish converting images to textures for the rest
     % of the portaits
     
@@ -335,7 +436,7 @@ try
     WaitSecs(1);
     
     %% Set up Trial Structure
-    nTrials = 100;
+    nTrials = 64;
     
     % Set up some recording material:
     res.participantResponse = zeros(1,nTrials); % Yes = 1; No = 2
@@ -357,6 +458,87 @@ try
     
     %% For loop to determine trial-to-trial sequence
     for t = 1:1
+        
+        pic = 0;
+        pic_index = [1:64];
+        rand_index = randi(64);
+        switch rand_index
+          case 1:16
+            pic = imread('P.N.png');
+          case 17:32
+            pic = imread('L.N.png');
+          case 33
+            pic = imread('P.Q1.1.png');
+          case 34
+            pic = imread('P.Q1.2.png');
+          case 35
+            pic = imread('P.Q1.3.png');
+          case 36
+            pic = imread('P.Q1.4.png');
+          case 37
+            pic = imread('P.Q2.1.png');
+          case 38
+            pic = imread('P.Q2.2.png');
+          case 39
+            pic = imread('P.Q2.3.png');
+          case 40
+            pic = imread('P.Q2.4.png');
+          case 41
+            pic = imread('P.Q3.1.png');
+          case 42
+            pic = imread('P.Q3.2.png');
+          case 43
+            pic = imread('P.Q3.3.png');
+          case 44
+            pic = imread('P.Q3.4.png');
+          case 45
+            pic = imread('P.Q4.1.png');
+          case 46
+            pic = imread('P.Q4.2.png');
+          case 47
+            pic = imread('P.Q4.3.png');
+          case 48
+            pic = imread('P.Q4.4.png');
+          case 49
+            pic = imread('L.Q1.1.png');
+          case 50
+            pic = imread('L.Q1.2.png');
+          case 51
+            pic = imread('L.Q1.3.png');
+          case 52
+            pic = imread('L.Q1.4.png');
+          case 53
+            pic = imread('L.Q2.1.png');
+          case 54
+            pic = imread('P.Q2.2.png');
+          case 55
+            pic = imread('P.Q2.3.png');
+          case 56
+            pic = imread('P.Q2.4.png');
+          case 57
+            pic = imread('P.Q3.1.png');
+          case 58
+            pic = imread('P.Q3.2.png');
+          case 59
+            pic = imread('L.Q3.3.png');
+          case 60
+            pic = imread('L.Q3.4.png');
+          case 61
+            pic = imread('L.Q4.1.png');
+          case 62
+            pic = imread('L.Q4.2.png');
+          case 63
+            pic = imread('L.Q4.3.png');
+          case 64
+            pic = imread('L.Q4.4.png');
+      end
+
+        pic_index(rand_index) = [];
+
+        p_Q1_1_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
+
+        
+        
         
         if trialMatrix(t) == 1 % when noise
             dotColor = black;
