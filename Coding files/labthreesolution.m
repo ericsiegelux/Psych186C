@@ -129,133 +129,7 @@ try
     practiceP2_texture = Screen('MakeTexture', window, practiceP2); % Convert image to texture which is used in Screen
     practiceL1_texture = Screen('MakeTexture', window, practiceL1); % Convert image to texture which is used in Screen
     practiceL2_texture = Screen('MakeTexture', window, practiceL2); % Convert image to texture which is used in Screen
-    
-    % Portrait - Read Images and Convert to Texture
-    p_Noise = imread('P.N.png');
-
-    p_Q1_1 = imread('P.Q1.1.png');
-    p_Q1_2 = imread('P.Q1.2.png');
-    p_Q1_3 = imread('P.Q1.3.png');
-    p_Q1_4 = imread('P.Q1.4.png');
-    
-    p_Q2_1 = imread('P.Q2.1.png');
-    p_Q2_2 = imread('P.Q2.2.png');
-    p_Q2_3 = imread('P.Q2.3.png');
-    p_Q2_4 = imread('P.Q2.4.png');
-    
-    p_Q3_1 = imread('P.Q3.1.png');
-    p_Q3_2 = imread('P.Q3.2.png');
-    p_Q3_3 = imread('P.Q3.3.png');
-    p_Q3_4 = imread('P.Q3.4.png');
-    
-    p_Q4_1 = imread('P.Q4.1.png');
-    p_Q4_2 = imread('P.Q4.2.png');
-    p_Q4_3 = imread('P.Q4.3.png');
-    p_Q4_4 = imread('P.Q4.4.png');
-
-
-    l_Noise = imread('L.N.png');
-
-    l_Q1_1 = imread('L.Q1.1.png');
-    l_Q1_2 = imread('L.Q1.2.png');
-    l_Q1_3 = imread('L.Q1.3.png');
-    l_Q1_4 = imread('L.Q1.4.png');
-
-    l_Q2_1 = imread('L.Q2.1.png');
-    l_Q2_2 = imread('L.Q2.2.png');
-    l_Q2_3 = imread('L.Q2.3.png');
-    l_Q2_4 = imread('L.Q2.4.png');
-
-    l_Q3_1 = imread('L.Q3.1.png');
-    l_Q3_2 = imread('L.Q3.2.png');
-    l_Q3_3 = imread('L.Q3.3.png');
-    l_Q3_4 = imread('L.Q3.4.png');
-
-    l_Q4_1 = imread('L.Q4.1.png');
-    l_Q4_2 = imread('L.Q4.2.png');
-    l_Q4_3 = imread('L.Q4.3.png');
-    l_Q4_4 = imread('L.Q4.4.png');
-    
-    pic = 0;
-    pic_index = [1:64];
-    rand_index = randi(64);
-    
-    switch rand_index
-      case 1:16
-        pic = imread('P.N.png');
-      case 17:32
-        pic = imread('L.N.png');
-      case 33
-        pic = imread('P.Q1.1.png');
-      case 34
-        pic = imread('P.Q1.2.png');
-      case 35
-        pic = imread('P.Q1.3.png');
-      case 36
-        pic = imread('P.Q1.4.png');
-      case 37
-        pic = imread('P.Q2.1.png');
-      case 38
-        pic = imread('P.Q2.2.png');
-      case 39
-        pic = imread('P.Q2.3.png');
-      case 40
-        pic = imread('P.Q2.4.png');
-      case 41
-        pic = imread('P.Q3.1.png');
-      case 42
-        pic = imread('P.Q3.2.png');
-      case 43
-        pic = imread('P.Q3.3.png');
-      case 44
-        pic = imread('P.Q3.4.png');
-      case 45
-        pic = imread('P.Q4.1.png');
-      case 46
-        pic = imread('P.Q4.2.png');
-      case 47
-        pic = imread('P.Q4.3.png');
-      case 48
-        pic = imread('P.Q4.4.png');
-      case 49
-        pic = imread('L.Q1.1.png');
-      case 50
-        pic = imread('L.Q1.2.png');
-      case 51
-        pic = imread('L.Q1.3.png');
-      case 52
-        pic = imread('L.Q1.4.png');
-      case 53
-        pic = imread('L.Q2.1.png');
-      case 54
-        pic = imread('P.Q2.2.png');
-      case 55
-        pic = imread('P.Q2.3.png');
-      case 56
-        pic = imread('P.Q2.4.png');
-      case 57
-        pic = imread('P.Q3.1.png');
-      case 58
-        pic = imread('P.Q3.2.png');
-      case 59
-        pic = imread('L.Q3.3.png');
-      case 60
-        pic = imread('L.Q3.4.png');
-      case 61
-        pic = imread('L.Q4.1.png');
-      case 62
-        pic = imread('L.Q4.2.png');
-      case 63
-        pic = imread('L.Q4.3.png');
-      case 64
-        pic = imread('L.Q4.4.png');
-    end
-
-    pic_index(rand_index) = [];
-    
-    p_Q1_1_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
-    % For Eric - i didn't finish converting images to textures for the rest
-    % of the portaits
+  
     
 
     % Image (Portrait)
@@ -280,11 +154,6 @@ try
     L.im_BottomRight_X = 0+cx+(L.imWidth/2);
     L.im_BottomRight_Y = 0+cy+(L.imHeight/2);
     
-    % Boundaries for dots within phone
-    dot_Left = im_TopLeft_X+30;
-    dot_Top = im_TopLeft_Y+40;
-    dot_Right = im_BottomRight_X-40;
-    dot_Bottom = im_BottomRight_Y-40;
     
     %% Instructions
     
@@ -292,7 +161,7 @@ try
     Screen('DrawText',window,'In this experiment, you may or may not be presented with "T" somewhere within the display of "L".',150,200, textColor);
     Screen('DrawText',window,'If there was a "T", press the "A" button.',150,225, textColor);
     Screen('DrawText',window,'If there was no "T", press the "L" button',150,250, textColor);
-    %Screen('DrawText',window,'You will be given 6 seconds to complete the task',150,300, textColor);
+    Screen('DrawText',window,'You will be given 6 seconds to complete the task',150,300, textColor);
     Screen('DrawText',window,'Press any key to practice.',150,500, textColor);
     
     Screen('Flip',window);
@@ -311,8 +180,8 @@ try
     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Results
@@ -321,8 +190,8 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Fixation Cross for Practice 2
@@ -334,8 +203,8 @@ try
     Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Results
@@ -344,8 +213,8 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Fixation Cross for Practice 3
@@ -357,8 +226,8 @@ try
     Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Results
@@ -367,8 +236,8 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Fixation Cross for Practice 4
@@ -380,8 +249,8 @@ try
     Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     %Results
@@ -390,8 +259,8 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
+    %KbWait;
+    %KbReleaseWait;
     WaitSecs(1);
     
     % End Practice
@@ -399,7 +268,7 @@ try
     Screen('Flip',window);
     KbWait;
     KbReleaseWait;
-    WaitSecs(1);
+    %WaitSecs(1);
     
     %% Set up Trial Structure
     nTrials = 64;
@@ -440,6 +309,7 @@ try
         Screen('Flip',window);
         WaitSecs(fixationCrossDuration);
         
+        % Portrait - Read Images and Convert to Texture
         rand_index = randi(length(pic_index));
         switch rand_index
           case 1
@@ -574,10 +444,7 @@ try
         
         if rand_index >= 1 && rand_index <= 16
             portrait = 1;
-            % Image (Portrait)
-            imScale = 1.5;
-            imWidth = 326; % original width = 433
-            imHeight = 648; % original heigth = 864
+            
             % Image (Portrait) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(imWidth/2);
             im_TopLeft_Y = 0+cy-(imHeight/2);
@@ -586,10 +453,6 @@ try
 
         elseif rand_index >= 17 && rand_index <= 32
             landscape = 1;
-            % Image (Landscape)
-            imScale = 1.5;
-            imWidth = 648; 
-            imHeight = 326; 
 
             % Image (Landscape) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(L.imWidth/2);
@@ -600,10 +463,7 @@ try
             
         elseif rand_index >= 33 && rand_index <= 48
             portrait = 1;
-            % Image (Portrait)
-            imScale = 1.5;
-            imWidth = 326; % original width = 433
-            imHeight = 648; % original heigth = 864
+            
             % Image (Portrait) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(imWidth/2);
             im_TopLeft_Y = 0+cy-(imHeight/2);
@@ -613,10 +473,6 @@ try
             
         else
              landscape = 1;
-            % Image (Landscape)
-            imScale = 1.5;
-            imWidth = 648; 
-            imHeight = 326; 
 
             % Image (Landscape) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(L.imWidth/2);
@@ -625,34 +481,26 @@ try
             im_BottomRight_Y = 0+cy+(L.imHeight/2);
             
         end
+        
         pic_index(rand_index) = [];
 
         pic_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
-
-     
-
-        % Boundaries for dots within phone
-        dot_Left = im_TopLeft_X+30;
-        dot_Top = im_TopLeft_Y+40;
-        dot_Right = im_BottomRight_X-40;
-        dot_Bottom = im_BottomRight_Y-40;
-        
-        
+                
         
         Screen('DrawTexture',window,pic_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
         Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
         Screen('Flip',window);
         KbWait;
         KbReleaseWait;
-        WaitSecs(1);
+        %WaitSecs(6);
         
         
         
         % Ask the participant what you want to
-        Screen('FillRect', window, black);
-        Screen('TextSize',window, 24);
-        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
-        Screen('Flip',window);
+        % Screen('FillRect', window, black);
+        % Screen('TextSize',window, 24);
+        % Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
+        % Screen('Flip',window);
         
         % Let them respond to your question
         while 1
@@ -686,8 +534,6 @@ try
         
         res.participantResponse(t) = touchtone; % value of key pressed in trial
         res.SDTresponse(t) = typeResponse;
-        %res.dotpositionX(t) = circlemoveX;
-        %res.dotpositionY(t) = circlemoveY;
         
         if debugMode == 0
             save(savename,'res');
