@@ -139,104 +139,104 @@ try
     
     %% Practice
     
-    %Fixation Cross for Practice 1
-    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
-    Screen('Flip',window);
-    WaitSecs(fixationCrossDuration);
+        %Fixation Cross for Practice 1
+        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        Screen('Flip',window);
+        WaitSecs(fixationCrossDuration);
     
-    %Practice 1
-    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Practice 1
+        Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Results
-    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
-    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Results
+        Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
+        Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Fixation Cross for Practice 2
-    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
-    Screen('Flip',window);
-    WaitSecs(fixationCrossDuration);
+        %Fixation Cross for Practice 2
+        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        Screen('Flip',window);
+        WaitSecs(fixationCrossDuration);
     
-    %Practice 2
-    Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Practice 2
+        Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Results
-    Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
-    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Results
+        Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
+        Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Fixation Cross for Practice 3
-    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
-    Screen('Flip',window);
-    WaitSecs(fixationCrossDuration);
+        %Fixation Cross for Practice 3
+        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        Screen('Flip',window);
+        WaitSecs(fixationCrossDuration);
     
-    %Practice 3
-    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Practice 3
+        Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Results
-    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
-    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
-    Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+        %Results
+        Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
+        Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+        Screen('Flip',window);
+        %KbWait;
+        %KbReleaseWait;
+        WaitSecs(1);
     
-    %Fixation Cross for Practice 4
-    Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
-    Screen('Flip',window);
-    WaitSecs(fixationCrossDuration);
+        %Fixation Cross for Practice 4
+        Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
+        Screen('Flip',window);
+        WaitSecs(fixationCrossDuration);
     
-    %Practice 4
-    Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Practice 4
+        Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    %Results
-    Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
-    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        %Results
+        Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+        Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
+        Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
-    % End Practice
-    Screen('DrawText',window,'You are finished with the practice trials.  Press any key to continue to the experiment.',500,cy, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+        % End Practice
+        Screen('DrawText',window,'You are finished with the practice trials.  Press any key to continue to the experiment.',500,cy, textColor);
+        Screen('Flip',window);
+        KbWait;
+        KbReleaseWait;
+        %WaitSecs(1);
     
     %% Set up Trial Structure
     nTrials = 64;
@@ -542,7 +542,7 @@ try
                 break;
             elseif keycode(lbutton) == 1
                 touchtone = 2;
-                endTime = GetSecs;
+                endTime = GetSecs;           
                 KbReleaseWait;
                 break;
             elseif keycode(exit_button) == 1
