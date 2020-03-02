@@ -269,7 +269,7 @@ try
     
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:5
+    for t = 1:10
         
         pic = 0;
         q = 0;
@@ -558,27 +558,6 @@ try
         Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
         Screen('Flip',window);
         
-        
-        % Let them respond to your question
-        while 1
-            
-            res.response_time(t) = GetSecs - start_time;
-            
-            [keyDown secs keycode] = KbCheck;
-            
-            if keycode(abutton) == 1
-                touchtone = 1;
-                KbReleaseWait;
-                break;
-            elseif keycode(lbutton) == 1
-                touchtone = 2;
-                KbReleaseWait;
-                break;
-            elseif keycode(exit_button) == 1
-                EXIT_NOW = true;
-                break;
-            end
-        end
         
         % H=1 / M=2 / FA = 3 / CR = 4
         if trialMatrix(rand_index) == 1 && touchtone == 1 %Signal + Yes [H]
