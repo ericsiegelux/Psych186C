@@ -2,6 +2,7 @@ Screen('Preference', 'SkipSyncTests', 1);
 clear; close all;
 KbName('UnifyKeyNames');
 debugMode = 0;
+rng shuffle;
 
 try
     %% Participant Information
