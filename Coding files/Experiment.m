@@ -167,7 +167,7 @@ try
     Screen('Flip',window);
     KbWait;
     KbReleaseWait;
-    WaitSecs(1);
+    %WaitSecs(1);
     
     %% Practice
     
@@ -180,9 +180,9 @@ try
     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
@@ -190,9 +190,9 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Fixation Cross for Practice 2
     Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
@@ -203,9 +203,9 @@ try
     Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
@@ -213,9 +213,9 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Fixation Cross for Practice 3
     Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
@@ -226,9 +226,9 @@ try
     Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
@@ -249,9 +249,9 @@ try
     Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
@@ -259,9 +259,9 @@ try
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
+    KbWait;
+    KbReleaseWait;
+    %WaitSecs(1);
     
     % End Practice
     Screen('DrawText',window,'You are finished with the practice trials.  Press any key to continue to the experiment.',500,cy, textColor);
@@ -281,6 +281,8 @@ try
     % Here add a res structure to record whether the response was 1/4 types
     % of responses: Hit, CR, Miss, FA
     res.SDTresponse = zeros(1,nTrials);
+    res.landscape = zeros(1,nTrials);
+    res.quadrant = zeros(1,nTrials);
     
     % Set up flags
     touchtone = 0;
@@ -300,8 +302,7 @@ try
     for t = 1:5
         
         pic = 0;
-        portrait = 0;
-        landscape = 0;
+        q = 0;
         
          % Draw the fixation cross in white, 2 = high smoothing
         Screen('FillRect',window,black);
@@ -314,136 +315,200 @@ try
         switch rand_index
           case 1
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 2
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 3
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 4
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 5
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 6
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 7
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 8
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 9
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 10
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 11
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 12
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 13
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 14
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 15
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 16
             pic = imread('P.N.png');
+            res.quadrant(t) = 0;
           case 17
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 18
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 19
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 20
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 21
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 22
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 23
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 24
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 25
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 26
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 27
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 28
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 29
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 30
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 31
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 32
             pic = imread('L.N.png');
+            res.quadrant(t) = 0;
           case 33
             pic = imread('P.Q1.1.png');
+            res.quadrant(t) = 1;
           case 34
             pic = imread('P.Q1.2.png');
+            res.quadrant(t) = 1;
           case 35
             pic = imread('P.Q1.3.png');
+            res.quadrant(t) = 1;
           case 36
             pic = imread('P.Q1.4.png');
+            res.quadrant(t) = 1;
           case 37
             pic = imread('P.Q2.1.png');
+            res.quadrant(t) = 2;
           case 38
             pic = imread('P.Q2.2.png');
+            res.quadrant(t) = 2;
           case 39
             pic = imread('P.Q2.3.png');
+            res.quadrant(t) = 2;
           case 40
             pic = imread('P.Q2.4.png');
+            res.quadrant(t) = 2;
           case 41
             pic = imread('P.Q3.1.png');
+            res.quadrant(t) = 3;
           case 42
             pic = imread('P.Q3.2.png');
+            res.quadrant(t) = 3;
           case 43
             pic = imread('P.Q3.3.png');
+            res.quadrant(t) = 3;
           case 44
             pic = imread('P.Q3.4.png');
+            res.quadrant(t) = 3;
           case 45
             pic = imread('P.Q4.1.png');
+            res.quadrant(t) = 4;
           case 46
             pic = imread('P.Q4.2.png');
+            res.quadrant(t) = 4;
           case 47
             pic = imread('P.Q4.3.png');
+            res.quadrant(t) = 4;
           case 48
             pic = imread('P.Q4.4.png');
+            res.quadrant(t) = 4;
           case 49
             pic = imread('L.Q1.1.png');
+             res.quadrant(t) = 1;
           case 50
             pic = imread('L.Q1.2.png');
+            res.quadrant(t) = 1;
           case 51
             pic = imread('L.Q1.3.png');
+            res.quadrant(t) = 1;
           case 52
             pic = imread('L.Q1.4.png');
+            res.quadrant(t) = 1;
           case 53
             pic = imread('L.Q2.1.png');
+            res.quadrant(t) = 2;
           case 54
             pic = imread('L.Q2.2.png');
+            res.quadrant(t) = 2;
           case 55
             pic = imread('L.Q2.3.png');
+            res.quadrant(t) = 2;
           case 56
             pic = imread('L.Q2.4.png');
+            res.quadrant(t) = 2;
           case 57
             pic = imread('L.Q3.1.png');
+            res.quadrant(t) = 3;
           case 58
             pic = imread('L.Q3.2.png');
+            res.quadrant(t) = 3;
           case 59
             pic = imread('L.Q3.3.png');
+            res.quadrant(t) = 3;
           case 60
             pic = imread('L.Q3.4.png');
+            res.quadrant(t) = 3;
           case 61
             pic = imread('L.Q4.1.png');
+            res.quadrant(t) = 4;
           case 62
             pic = imread('L.Q4.2.png');
+            res.quadrant(t) = 4;
           case 63
             pic = imread('L.Q4.3.png');
+            res.quadrant(t) = 4;
           case 64
             pic = imread('L.Q4.4.png');
+            res.quadrant(t) = 4;
         end
         
         if rand_index >= 1 && rand_index <= 16
-            portrait = 1;
+            res.landscape(t) = "portrait";
             
             % Image (Portrait) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(imWidth/2);
@@ -452,7 +517,7 @@ try
             im_BottomRight_Y = 0+cy+(imHeight/2);
 
         elseif rand_index >= 17 && rand_index <= 32
-            landscape = 1;
+            res.landscape(t) = "landscape";
 
             % Image (Landscape) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(L.imWidth/2);
@@ -462,7 +527,7 @@ try
             
             
         elseif rand_index >= 33 && rand_index <= 48
-            portrait = 1;
+            res.landscape(t) = "portrait";
             
             % Image (Portrait) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(imWidth/2);
@@ -472,7 +537,7 @@ try
             
             
         else
-             landscape = 1;
+             res.landscape(t) = "landscape";
 
             % Image (Landscape) Coordinates - to set image center of screen
             im_TopLeft_X = 0+cx-(L.imWidth/2);
@@ -533,7 +598,7 @@ try
         end
         
         res.participantResponse(t) = touchtone; % value of key pressed in trial
-        res.SDTresponse(t) = typeResponse;
+        res.SDTresponse(t) = typeResponse; 
         
         if debugMode == 0
             save(savename,'res');
