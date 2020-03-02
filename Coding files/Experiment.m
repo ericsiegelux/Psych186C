@@ -1,39 +1,7 @@
-% Homework #2: Leveling balllaUp
-
-% Task #1: Make 70 signal trials, Make 30 noise trials.
-
-% Task #2: In the for loop, please randomize
-% whether a given trial presents a flashing dot (SIGNAL) or not (NOISE).
-% This has already been started in the script using the randperm function
-% for task #1.
-
-% Task #3: Add variables to record whatever you need to calculate (i) hits,
-% (ii) correct rejections, (iii) false alarms, and (iv) misses
-% Task #4: Add some noise to each trial. In the folder on CCLE you will see
-% the function MakeUniformPlayground. It allows the users to easily create
-% a uniform Field of Dots (FoD) based on the desired width, height, and density
-% requested. It has been implemented, incorrectly, in the current script.
-
-% Task #4a: The FoD should appear at the same time as the flashing dot to
-% make it difficult for the participant to determine if there was a flash
-% present during the trial. As it is currently implemented, the FoD
-% appears AFTER the flashing dot stimulus. Please make it appear at
-% the same time.
-
-% Task #4B: The FoD appears in the bottom-riqht quadrant of the screen. Please
-% adjust  its location such that it occupies the 300 x 300 region
-% where the flashing dot can appear. In other words, the FoD should be a
-% 300 x 300 field centered on the center of the screen.
-
-% ## FoD TIP: You will need to reposition the code in the trial loop to
-% manage this.
-
-% GOOD LUCK / HAVE FUN / BE CREATIVE
-
 Screen('Preference', 'SkipSyncTests', 1);
 clear; close all;
 KbName('UnifyKeyNames');
-debugMode = 1;
+debugMode = 0;
 
 try
     %% Participant Information
@@ -283,6 +251,7 @@ try
     res.SDTresponse = zeros(1,nTrials);
     res.landscape = zeros(1,nTrials);
     res.quadrant = zeros(1,nTrials);
+    res.response_time = zeros(1,nTrials);
     
     % Set up flags
     touchtone = 0;
@@ -309,6 +278,8 @@ try
         Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
         Screen('Flip',window);
         WaitSecs(fixationCrossDuration);
+        
+        start_time = GetSecs;
         
         % Portrait - Read Images and Convert to Texture
         rand_index = randi(length(pic_index));
@@ -555,20 +526,42 @@ try
         Screen('DrawTexture',window,pic_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
         Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
         Screen('Flip',window);
-        KbWait;
-        KbReleaseWait;
-        %WaitSecs(6);
+        %KbWait;
+        %KbReleaseWait;
         
+        while 1
+            
+            res.response_time(t) = GetSecs - start_time;
+            
+            [keyDown secs keycode] = KbCheck;
+            
+            if keycode(abutton) == 1
+                touchtone = 1;
+                KbReleaseWait;
+                break;
+            elseif keycode(lbutton) == 1
+                touchtone = 2;
+                KbReleaseWait;
+                break;
+            elseif keycode(exit_button) == 1
+                EXIT_NOW = true;
+                break;
+            end
+        end
         
+        WaitSecs(6);
         
         % Ask the participant what you want to
-        % Screen('FillRect', window, black);
-        % Screen('TextSize',window, 24);
-        % Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
-        % Screen('Flip',window);
+        Screen('FillRect', window, black);
+        Screen('TextSize',window, 24);
+        Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
+        Screen('Flip',window);
+        
         
         % Let them respond to your question
         while 1
+            
+            res.response_time(t) = GetSecs - start_time;
             
             [keyDown secs keycode] = KbCheck;
             
