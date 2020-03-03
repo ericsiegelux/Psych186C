@@ -1,7 +1,7 @@
 Screen('Preference', 'SkipSyncTests', 1);
 clear; close all;
 KbName('UnifyKeyNames');
-debugMode = 0;
+debugMode = 1;
 rng('shuffle');
 
 try
@@ -10,7 +10,7 @@ try
     if debugMode == 0 %if not in debug mode, then present the box
         while 1
             % get user information
-            prompt = {'Participant ID:','Age:','Gender:','Experimenter ID:'};
+            prompt = {'Participant ID:','Age:','Gender:'};
             dlg_title = 'Subject Information';
             num_lines = 1; %How big each box is
             options.Resize = 'on';
@@ -20,7 +20,6 @@ try
             res.subjID = subjInfo{1};
             res.age = str2double(subjInfo{2});
             res.gender = subjInfo{3};
-            res.experimenterID = subjInfo{4};
             % create savefile pathname
             if ~exist('data','dir')
                 mkdir data; %make the directory data if it does not exist yet
@@ -130,7 +129,7 @@ try
     Screen('DrawText',window,'In this experiment, you may or may not be presented with "T" somewhere within the display of "L".',150,200, textColor);
     Screen('DrawText',window,'If there was a "T", press the "A" button.',150,225, textColor);
     Screen('DrawText',window,'If there was no "T", press the "L" button',150,250, textColor);
-    Screen('DrawText',window,'You will be given 2 seconds to complete the task',150,300, textColor);
+    Screen('DrawText',window,'You will be given 1 second to look at the stimulus',150,300, textColor);
     Screen('DrawText',window,'Press any key to practice.',150,500, textColor);
     
     Screen('Flip',window);
@@ -144,13 +143,13 @@ try
     Screen('Flip',window);
     WaitSecs(fixationCrossDuration);
     
-    %Practice 1
-    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('Flip',window);
-    KbWait;
-    KbReleaseWait;
-    %WaitSecs(1);
+%     Practice 1
+%     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+%     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+%     Screen('Flip',window);
+%     KbWait;
+%     KbReleaseWait;
+%     WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
@@ -243,8 +242,6 @@ try
     
     % Set up some recording material:
     res.participantResponse = zeros(1,nTrials); % Yes = 1; No = 2
-    res.dotpositionX = zeros(1,nTrials); % X-distance from center
-    res.dotpositionY = zeros(1,nTrials); % Y-distance from center
     
     % Here add a res structure to record whether the response was 1/4 types
     % of responses: Hit, CR, Miss, FA
@@ -252,6 +249,7 @@ try
     res.orientation = zeros(1,nTrials);
     res.quadrant = zeros(1,nTrials);
     res.response_time = zeros(1,nTrials);
+    res.index = zeros(1,nTrials);
     
     % Set up flags
     touchtone = 0;
@@ -265,10 +263,10 @@ try
     
     pic = 0;
     pic_index = [1:64];
-    
+    rand_array = [1:64];
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:10
+    for t = 1:nTrials
         
         pic = 0;
         q = 0;
@@ -280,203 +278,204 @@ try
         WaitSecs(fixationCrossDuration);
         
         % Portrait - Read Images and Convert to Texture
-        rand_index = randi(length(pic_index));
-        switch rand_index
-            case 1
+        rand_index = randperm(length(rand_array),1);
+        res.index(t) = pic_index(rand_index);
+        
+        if(pic_index(rand_index) == 1)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 2
+            elseif(pic_index(rand_index) ==  2)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 3
+            elseif(pic_index(rand_index) ==  3)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 4
+            elseif(pic_index(rand_index) ==  4)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 5
+            elseif(pic_index(rand_index) ==  5)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 6
+            elseif(pic_index(rand_index) ==  6)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 7
+            elseif(pic_index(rand_index) ==  7)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 8
+            elseif(pic_index(rand_index) ==  8)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 9
+            elseif(pic_index(rand_index) ==  9)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 10
+            elseif(pic_index(rand_index) ==  10)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 11
+            elseif(pic_index(rand_index) ==  11)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 12
+            elseif(pic_index(rand_index) ==  12)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 13
+            elseif(pic_index(rand_index) ==  13)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 14
+            elseif(pic_index(rand_index) ==  14)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 15
+            elseif(pic_index(rand_index) ==  15)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 16
+            elseif(pic_index(rand_index) ==  16)
                 pic = imread('P.N.png');
                 res.quadrant(t) = 0;
-            case 17
+            elseif(pic_index(rand_index) ==  17)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 18
+            elseif(pic_index(rand_index) ==  18)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 19
+            elseif(pic_index(rand_index) ==  19)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 20
+            elseif(pic_index(rand_index) ==  20)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 21
+            elseif(pic_index(rand_index) ==  21)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 22
+            elseif(pic_index(rand_index) ==  22)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 23
+            elseif(pic_index(rand_index) ==  23)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 24
+            elseif(pic_index(rand_index) ==  24)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 25
+            elseif(pic_index(rand_index) ==  25)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 26
+            elseif(pic_index(rand_index) ==  26)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 27
+            elseif(pic_index(rand_index) ==  27)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 28
+            elseif(pic_index(rand_index) ==  28)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 29
+            elseif(pic_index(rand_index) ==  29)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 30
+            elseif(pic_index(rand_index) ==  30)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 31
+            elseif(pic_index(rand_index) ==  31)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 32
+            elseif(pic_index(rand_index) ==  32)
                 pic = imread('L.N.png');
                 res.quadrant(t) = 0;
-            case 33
+            elseif(pic_index(rand_index) ==  33)
                 pic = imread('P.Q1.1.png');
                 res.quadrant(t) = 1;
-            case 34
+            elseif(pic_index(rand_index) ==  34)
                 pic = imread('P.Q1.2.png');
                 res.quadrant(t) = 1;
-            case 35
+            elseif(pic_index(rand_index) ==  35)
                 pic = imread('P.Q1.3.png');
                 res.quadrant(t) = 1;
-            case 36
+            elseif(pic_index(rand_index) ==  36)
                 pic = imread('P.Q1.4.png');
                 res.quadrant(t) = 1;
-            case 37
+            elseif(pic_index(rand_index) ==  37)
                 pic = imread('P.Q2.1.png');
                 res.quadrant(t) = 2;
-            case 38
+            elseif(pic_index(rand_index) ==  38)
                 pic = imread('P.Q2.2.png');
                 res.quadrant(t) = 2;
-            case 39
+            elseif(pic_index(rand_index) ==  39)
                 pic = imread('P.Q2.3.png');
                 res.quadrant(t) = 2;
-            case 40
+            elseif(pic_index(rand_index) ==  40)
                 pic = imread('P.Q2.4.png');
                 res.quadrant(t) = 2;
-            case 41
+            elseif(pic_index(rand_index) ==  41)
                 pic = imread('P.Q3.1.png');
                 res.quadrant(t) = 3;
-            case 42
+            elseif(pic_index(rand_index) ==  42)
                 pic = imread('P.Q3.2.png');
                 res.quadrant(t) = 3;
-            case 43
+            elseif(pic_index(rand_index) ==  43)
                 pic = imread('P.Q3.3.png');
                 res.quadrant(t) = 3;
-            case 44
+            elseif(pic_index(rand_index) ==  44)
                 pic = imread('P.Q3.4.png');
                 res.quadrant(t) = 3;
-            case 45
+            elseif(pic_index(rand_index) ==  45)
                 pic = imread('P.Q4.1.png');
                 res.quadrant(t) = 4;
-            case 46
+            elseif(pic_index(rand_index) ==  46)
                 pic = imread('P.Q4.2.png');
                 res.quadrant(t) = 4;
-            case 47
+            elseif(pic_index(rand_index) ==  47)
                 pic = imread('P.Q4.3.png');
                 res.quadrant(t) = 4;
-            case 48
+            elseif(pic_index(rand_index) ==  48)
                 pic = imread('P.Q4.4.png');
                 res.quadrant(t) = 4;
-            case 49
+            elseif(pic_index(rand_index) ==  49)
                 pic = imread('L.Q1.1.png');
                 res.quadrant(t) = 1;
-            case 50
+            elseif(pic_index(rand_index) ==  50)
                 pic = imread('L.Q1.2.png');
                 res.quadrant(t) = 1;
-            case 51
+            elseif(pic_index(rand_index) ==  51)
                 pic = imread('L.Q1.3.png');
                 res.quadrant(t) = 1;
-            case 52
+            elseif(pic_index(rand_index) ==  52)
                 pic = imread('L.Q1.4.png');
                 res.quadrant(t) = 1;
-            case 53
+            elseif(pic_index(rand_index) ==  53)
                 pic = imread('L.Q2.1.png');
                 res.quadrant(t) = 2;
-            case 54
+            elseif(pic_index(rand_index) ==  54)
                 pic = imread('L.Q2.2.png');
                 res.quadrant(t) = 2;
-            case 55
+            elseif(pic_index(rand_index) ==  55)
                 pic = imread('L.Q2.3.png');
                 res.quadrant(t) = 2;
-            case 56
+            elseif(pic_index(rand_index) ==  56)
                 pic = imread('L.Q2.4.png');
                 res.quadrant(t) = 2;
-            case 57
+            elseif(pic_index(rand_index) ==  57)
                 pic = imread('L.Q3.1.png');
                 res.quadrant(t) = 3;
-            case 58
+            elseif(pic_index(rand_index) ==  58)
                 pic = imread('L.Q3.2.png');
                 res.quadrant(t) = 3;
-            case 59
+            elseif(pic_index(rand_index) ==  59)
                 pic = imread('L.Q3.3.png');
                 res.quadrant(t) = 3;
-            case 60
+            elseif(pic_index(rand_index) ==  60)
                 pic = imread('L.Q3.4.png');
                 res.quadrant(t) = 3;
-            case 61
+            elseif(pic_index(rand_index) ==  61)
                 pic = imread('L.Q4.1.png');
                 res.quadrant(t) = 4;
-            case 62
+            elseif(pic_index(rand_index) ==  62)
                 pic = imread('L.Q4.2.png');
                 res.quadrant(t) = 4;
-            case 63
+            elseif(pic_index(rand_index) ==  63)
                 pic = imread('L.Q4.3.png');
                 res.quadrant(t) = 4;
-            case 64
+            elseif(pic_index(rand_index) ==  64)
                 pic = imread('L.Q4.4.png');
                 res.quadrant(t) = 4;
         end
         
-        if rand_index >= 1 && rand_index <= 16
+        if pic_index(rand_index) >= 1 && pic_index(rand_index) <= 16
             res.orientation(t) = 0;
             
             % Image (Portrait) Coordinates - to set image center of screen
@@ -485,7 +484,7 @@ try
             im_BottomRight_X = 0+cx+(imWidth/2);
             im_BottomRight_Y = 0+cy+(imHeight/2);
             
-        elseif rand_index >= 17 && rand_index <= 32
+        elseif pic_index(rand_index) >= 17 && pic_index(rand_index) <= 32
             res.orientation(t) = 1;
             
             % Image (Landscape) Coordinates - to set image center of screen
@@ -495,7 +494,7 @@ try
             im_BottomRight_Y = 0+cy+(L.imHeight/2);
             
             
-        elseif rand_index >= 33 && rand_index <= 48
+        elseif pic_index(rand_index) >= 33 && pic_index(rand_index) <= 48
             res.orientation(t) = 0;
             
             % Image (Portrait) Coordinates - to set image center of screen
@@ -517,14 +516,16 @@ try
         end
         
         pic_index(rand_index) = [];
+        rand_array(rand_index) = [];
         
         pic_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
         
         Screen('DrawTexture',window,pic_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
         Screen('Flip',window);
-        WaitSecs(2);
+        WaitSecs(1);
         
         start_time = GetSecs;
+        
         % Ask the participant what you want to
         Screen('FillRect', window, black);
         Screen('TextSize',window, 24);
