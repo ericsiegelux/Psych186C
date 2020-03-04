@@ -1,7 +1,7 @@
 Screen('Preference', 'SkipSyncTests', 1);
 clear; close all;
 KbName('UnifyKeyNames');
-debugMode = 1;
+debugMode = 0;
 rng('shuffle');
 
 try
@@ -82,7 +82,8 @@ try
     fixationCross = [fixationXCoordinates; fixationYCoordinates];
     
     % Set the duration for how long the fixation cross appears each trial
-    fixationCrossDuration = .5;
+    fixationCrossDuration = 1.625;
+    phone_image_duration = .625;
     
     
     %% Images
@@ -143,17 +144,19 @@ try
     Screen('Flip',window);
     WaitSecs(fixationCrossDuration);
     
-%     Practice 1
-%     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-%     Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-%     Screen('Flip',window);
-%     KbWait;
-%     KbReleaseWait;
-%     WaitSecs(1);
+    % Practice 1
+    Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
+    %Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    WaitSecs(phone_image_duration);
+%   
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
     
     %Results
     Screen('DrawTexture',window,practiceP1_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
@@ -168,15 +171,16 @@ try
     
     %Practice 2
     Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    WaitSecs(phone_image_duration);
+    
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
     Screen('Flip',window);
     KbWait;
     KbReleaseWait;
-    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceP2_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('DrawText',window,'"T" was present on row 1 and column 10',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
@@ -191,21 +195,22 @@ try
     
     %Practice 3
     Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    WaitSecs(phone_image_duration);
+    
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
+    Screen('Flip',window);
+    KbWait;
+    KbReleaseWait;
+    
+    %Results
+    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
+    Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
+    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
     KbWait;
     KbReleaseWait;
     %WaitSecs(1);
-    
-    %Results
-    Screen('DrawTexture',window,practiceL1_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
-    Screen('DrawText',window,'"T" was present on row 1 and column 2',cx-200,900, textColor);
-    Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
-    Screen('Flip',window);
-    %KbWait;
-    %KbReleaseWait;
-    WaitSecs(1);
     
     %Fixation Cross for Practice 4
     Screen('DrawLines', window, fixationCross, fixationLineWidth, white, [cx cy], 2);
@@ -214,15 +219,16 @@ try
     
     %Practice 4
     Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
+    Screen('Flip',window);
+    WaitSecs(phone_image_duration);
+    
+    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,cy, textColor);
     Screen('Flip',window);
     KbWait;
     KbReleaseWait;
-    %WaitSecs(1);
     
     %Results
     Screen('DrawTexture',window,practiceL2_texture,[], [L.im_TopLeft_X L.im_TopLeft_Y  L.im_BottomRight_X L.im_BottomRight_Y]); % Place image into screen
-    Screen('DrawText',window,'Was a "T" present? YES(A) or NO(L)?',cx-200,100, textColor);
     Screen('DrawText',window,'"T" was present on row 1 and column 1',cx-200,900, textColor);
     Screen('DrawText',window,'Press any key to continue.',cx-200,950, textColor);
     Screen('Flip',window);
@@ -270,6 +276,12 @@ try
         
         pic = 0;
         q = 0;
+        
+        if(length(pic_index) == 32)
+            Screen('DrawText',window,'Take a 5 second break',cx-200,cy, textColor);
+            Screen('Flip',window);
+            WaitSecs(5);
+        end
         
         % Draw the fixation cross in white, 2 = high smoothing
         Screen('FillRect',window,black);
@@ -515,14 +527,11 @@ try
             
         end
         
-        pic_index(rand_index) = [];
-        rand_array(rand_index) = [];
-        
         pic_texture = Screen('MakeTexture', window, pic); % Convert image to texture which is used in Screen
         
         Screen('DrawTexture',window,pic_texture,[], [im_TopLeft_X im_TopLeft_Y  im_BottomRight_X im_BottomRight_Y]); % Place image into screen
         Screen('Flip',window);
-        WaitSecs(1);
+        WaitSecs(phone_image_duration);
         
         start_time = GetSecs;
         
@@ -559,15 +568,18 @@ try
         
         
         % H=1 / M=2 / FA = 3 / CR = 4
-        if trialMatrix(rand_index) == 1 && touchtone == 1 %Signal + Yes [H]
+        if trialMatrix(pic_index(rand_index)) == 1 && touchtone == 1 %Signal + Yes [H]
             typeResponse = 1;
-        elseif trialMatrix(rand_index) == 1 && touchtone == 2 %Signal + No [M]
+        elseif trialMatrix(pic_index(rand_index)) == 1 && touchtone == 2 %Signal + No [M]
             typeResponse = 2;
-        elseif trialMatrix(rand_index) == 0 && touchtone == 1 %Noise + Yes [FA]
+        elseif trialMatrix(pic_index(rand_index)) == 0 && touchtone == 1 %Noise + Yes [FA]
             typeResponse = 3;
-        elseif trialMatrix(rand_index) == 0 && touchtone == 2 %wNoise + No [CR]
+        elseif trialMatrix(pic_index(rand_index)) == 0 && touchtone == 2 %wNoise + No [CR]
             typeResponse = 4;
         end
+        
+        pic_index(rand_index) = [];
+        rand_array(rand_index) = [];
         
         res.participantResponse(t) = touchtone; % value of key pressed in trial
         res.SDTresponse(t) = typeResponse;
