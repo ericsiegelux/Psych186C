@@ -130,7 +130,7 @@ try
     Screen('DrawText',window,'In this experiment, you may or may not be presented with "T" somewhere within the display of "L".',150,200, textColor);
     Screen('DrawText',window,'If there was a "T", press the "A" button.',150,225, textColor);
     Screen('DrawText',window,'If there was no "T", press the "L" button',150,250, textColor);
-    Screen('DrawText',window,'You will be given 1 second to look at the stimulus',150,300, textColor);
+    Screen('DrawText',window,'You will be given 0.625 seconds to look at the stimulus',150,300, textColor);
     Screen('DrawText',window,'Press any key to practice.',150,500, textColor);
     
     Screen('Flip',window);
@@ -272,7 +272,7 @@ try
     rand_array = [1:64];
     
     %% For loop to determine trial-to-trial sequence
-    for t = 1:nTrials
+    for t = 1:1
         
         pic = 0;
         q = 0;
